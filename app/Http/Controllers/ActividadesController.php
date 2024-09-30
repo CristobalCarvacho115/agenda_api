@@ -35,17 +35,28 @@ class ActividadesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Actividad $actividad)
+    public function show($id_actividad)
     {
-        $actividad = Actividad::find($id_actividad);
+        $actividad = Actividad::where('id_actividad', $id_actividad)->first();
+
+        if (!$actividad) {
+            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        }
+
         return $actividad;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Actividad $actividad)
+    public function update(Request $request, $id_actividad)
     {
+        $actividad = Actividad::where('id_actividad', $id_actividad)->first();
+
+        if (!$actividad) {
+            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        }
+
         $actividad->nombre_actividad = $request->nombre_actividad;
         $actividad->descripcion = $request->descripcion;
         $actividad->color = $request->color;
@@ -59,8 +70,13 @@ class ActividadesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Actividad $actividad)
+    public function destroy($id_actividad)
     {
-        return $actividad->delete();
+        $actividad = Actividad::where('id_actividad',$id_actividad);
+        if (!$actividad) {
+            return response()->json(['error' => 'Actividad no encontrada.'], 404);
+        }
+
+        $actividad->delete();
     }
 }

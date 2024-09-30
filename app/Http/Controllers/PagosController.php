@@ -47,8 +47,13 @@ class PagosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Pago $pago)
-    // {
-    //     return $pago->delete();
-    // }
+//     public function destroy($id_pago)
+//     {
+//         $pago = Pago::where('id_pago',$id_pago);
+//         if (!$pago) {
+//             return response()->json(['error' => 'Pago no encontrada.'], 404);
+//         }
+
+//         return $pago->delete();
+//     }
 }

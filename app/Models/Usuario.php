@@ -14,6 +14,7 @@ class Usuario extends Model
 
     protected $table='usuarios';
     protected $hidden = ['deleted_at'];
+    public $timestamps = false;
 
     public function pagos():HasMany{
         return $this->hasMany(Pago::class);

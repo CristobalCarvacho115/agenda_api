@@ -11,6 +11,7 @@ class Rol extends Model
     use HasFactory;
 
     protected $table='roles';
+    public $timestamps = false;
     
     public function usuarios():HasMany{
         return $this->hasMany(Usuario::class);

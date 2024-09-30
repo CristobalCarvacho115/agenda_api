@@ -13,6 +13,7 @@ class Fondo extends Model
 
     protected $table='fondos';
     protected $hidden = ['deleted_at'];
+    public $timestamps = false;
 
     public function usuarios():HasMany{
         return $this->hasMany(Usuario::class);

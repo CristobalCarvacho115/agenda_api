@@ -13,6 +13,7 @@ class Categoria extends Model
 
     protected $table='categorias';
     protected $hidden = ['deleted_at'];
+    public $timestamps = false;
 
     public function actividades():HasMany{
         return $this->hasMany(Actividad::class);

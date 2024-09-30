@@ -21,6 +21,7 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         $rol = new Rol();
+        $rol->id_rol = $request->id_rol;
         $rol->nombre_rol = $request->nombre_rol;
         $rol->save();
         return $rol;
@@ -29,16 +30,28 @@ class RolesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rol $rol)
+    public function show($id_rol)
     {
+        $rol = Rol::where('id_rol', $id_rol)->first();
+
+        if (!$rol) {
+            return response()->json(['error' => 'Rol no encontrado'], 404);
+        }
+
         return $rol;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, $id_rol)
     {
+        $rol = Rol::where('id_rol', $id_rol)->first();
+
+        if (!$rol) {
+            return response()->json(['error' => 'Rol no encontrado'], 404);
+        }
+
         $rol->nombre_rol = $request->nombre_rol;
         $rol->save();
         return $rol;
@@ -47,8 +60,13 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rol $rol)
+    public function destroy($id_rol)
     {
+        $rol = Rol::where('id_rol',$id_rol);
+        if (!$rol) {
+            return response()->json(['error' => 'Rol no encontrado.'], 404);
+        }
+
         return $rol->delete();
     }
 }

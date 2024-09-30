@@ -13,6 +13,7 @@ class Actividad extends Model
 
     protected $table='actividades';
     protected $hidden = ['deleted_at'];
+    public $timestamps = false;
 
     public function categoria():BelongsTo{
         return $this->belongsTo(Categoria::class);

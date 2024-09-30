@@ -11,6 +11,7 @@ class Pago extends Model
     use HasFactory;
 
     protected $table='pagos';
+    public $timestamps = false;
     
     public function usuario():BelongsTo{
         return $this->belongsTo(Usuario::class);

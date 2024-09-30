@@ -49,8 +49,13 @@ class FondosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fondo $fondo)
+    public function destroy($id_fondo)
     {
+        $fondo = Fondo::where('id_fondo',$id_fondo);
+        if (!$fondo) {
+            return response()->json(['error' => 'Fondo no encontrada.'], 404);
+        }
+
         return $fondo->delete();
     }
 }
