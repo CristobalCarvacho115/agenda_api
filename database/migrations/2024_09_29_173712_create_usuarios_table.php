@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->integer('id_usuario')->autoIncrement();
+            $table->integer('id')->autoIncrement();
             $table->string('nombre_usuario',50);
             $table->string('correo',50);
             $table->string('password',200);
             $table->boolean('plus');
             $table->integer('id_fondo');
             $table->tinyInteger('id_rol');
-            $table->foreign('id_fondo')->references('id_fondo')->on('fondos');
-            $table->foreign('id_rol')->references('id_rol')->on('roles');
+            $table->foreign('id_fondo')->references('id')->on('fondos');
+            $table->foreign('id_rol')->references('id')->on('roles');
             $table->softDeletes();
         });
     }

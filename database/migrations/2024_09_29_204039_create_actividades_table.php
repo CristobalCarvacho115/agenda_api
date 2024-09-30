@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('actividades', function (Blueprint $table) {
-            $table->integer('id_actividad')->autoIncrement();
+            $table->integer('id')->autoIncrement();
             $table->integer('id_usuario');
             $table->string('nombre_actividad',40);
             $table->string('descripcion',100);
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->datetime('fecha_hora_inicio');
             $table->datetime('fecha_hora_termino');
             $table->datetime('recordatorio');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios');
-            $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->softDeletes();
         });
     }

@@ -30,28 +30,16 @@ class CategoriasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id_categoria)
+    public function show(Categoria $categoria)
     {
-        $categoria = Categoria::where('id_categoria', $id_categoria)->first();
-
-        if (!$categoria) {
-            return response()->json(['error' => 'Categoria no encontrada'], 404);
-        }
-
         return $categoria;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $categoria)
+    public function update(Request $request, Categoria $categoria)
     {
-        $categoria = Categoria::where('id_categoria', $id_categoria)->first();
-
-        if (!$categoria) {
-            return response()->json(['error' => 'Categoria no encontrada'], 404);
-        }
-
         $categoria->nombre_categoria = $request->nombre_categoria;
         $categoria->color = $request->color;
         $categoria->save();
@@ -61,13 +49,8 @@ class CategoriasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_categoria)
+    public function destroy(Categoria $categoria)
     {
-        $categoria = Categoria::where('id_categoria',$id_categoria);
-        if (!$categoria) {
-            return response()->json(['error' => 'Categoria no encontrada.'], 404);
-        }
-
         return $categoria->delete();
     }
 }

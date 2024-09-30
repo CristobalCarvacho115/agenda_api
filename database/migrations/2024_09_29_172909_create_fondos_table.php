@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fondos', function (Blueprint $table) {
-            $table->integer('id_fondo')->autoIncrement();
+            $table->integer('id')->autoIncrement();
             $table->text('imagen',200);
             $table->boolean('fondo_plus');
             $table->softDeletes();

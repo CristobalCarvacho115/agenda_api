@@ -21,8 +21,17 @@ Route::get('/actividades/{actividad}',[ActividadesController::class,'show'])->na
 // Route::get('/actividades/{actividad}/edit',[ActividadesController::class,'edit'])->name('generos.edit')->middleware('auth');;
 Route::put('/actividades/{actividad}',[ActividadesController::class,'update'])->name('actividades.update');
 
-Route::apiResource('fondos', FondosController::class);
+
+Route::get('/fondos',[fondosController::class,'index'])->name('fondos.index');
+Route::post('/fondos',[fondosController::class,'store'])->name('fondos.store');
+Route::delete('/fondos/{fondo}',[fondosController::class,'destroy'])->name('fondos.destroy');
+Route::get('/fondos/{fondo}',[fondosController::class,'show'])->name('fondos.show');
+// Route::get('/fondos/{actividad1}/edit',[fondosController::class,'edit'])->name('fondos.edit')->middleware('auth');;
+Route::put('/fondos/{fondo}',[fondosController::class,'update'])->name('fondos.update');
+
+
 Route::apiResource('pagos', PagosController::class);
+
 
 Route::get('/roles',[RolesController::class,'index'])->name('roles.index');
 Route::get('/roles/{rol}',[RolesController::class,'show'])->name('roles.show');
@@ -31,9 +40,11 @@ Route::delete('/roles/{rol}',[RolesController::class,'destroy'])->name('roles.de
 // Route::get('/roles/{rol}/edit',[RolesController::class,'edit'])->name('generos.edit')->middleware('auth');;
 Route::put('/roles/{rol}',[RolesController::class,'update'])->name('roles.update');
 
+
 Route::apiResource('usuarios', UsuariosController::class);
 Route::put('usuarios/actualizar-plus/{usuario}', [UsuariosController::class, 'plus']);
 Route::put('usuarios/cambiar-contrasena/{usuario}', [UsuariosController::class, 'password']);
+
 
 Route::apiResource('categorias', CategoriasController::class);
 

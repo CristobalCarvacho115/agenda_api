@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pagos', function (Blueprint $table) {
-            $table->integer('id_pago')->autoIncrement();
+            $table->integer('id')->autoIncrement();
             $table->integer('id_usuario');
             $table->datetime('fecha_compra');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
         });
     }
 

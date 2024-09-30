@@ -12,7 +12,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return Usuario::orderBy('id_usuario')->get();
+        return Usuario::orderBy('id_rol')->orderBy('nombre_usuario')->get();
     }
 
     /**
@@ -65,13 +65,8 @@ class UsuariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_usuario)
+    public function destroy(Usuario $usuario)
     {
-        $usuario = Usuario::where('id_usuario',$id_usuario);
-        if (!$usuario) {
-            return response()->json(['error' => 'Usuario no encontrado.'], 404);
-        }
-
         return $usuario->delete();
     }
 }

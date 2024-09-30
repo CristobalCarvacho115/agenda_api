@@ -12,7 +12,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return Rol::orderBy('id_rol')->get();
+        return Rol::orderBy('id')->get();
     }
 
     /**
@@ -21,7 +21,7 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         $rol = new Rol();
-        $rol->id_rol = $request->id_rol;
+        $rol->id = $request->id_rol;
         $rol->nombre_rol = $request->nombre_rol;
         $rol->save();
         return $rol;
@@ -30,43 +30,26 @@ class RolesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id_rol)
+    public function show(Rol $rol)
     {
-        $rol = Rol::where('id_rol', $id_rol)->first();
-
-        if (!$rol) {
-            return response()->json(['error' => 'Rol no encontrado'], 404);
-        }
-
         return $rol;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_rol)
+    public function update(Request $request, Rol $rol)
     {
-        $rol = Rol::where('id_rol', $id_rol)->first();
-
-        if (!$rol) {
-            return response()->json(['error' => 'Rol no encontrado'], 404);
-        }
-
-        $rol->nombre_rol = $request->nombre_rol;
-        $rol->save();
-        return $rol;
+        // $rol->nombre_rol = $request->nombre_rol;
+        // $rol->save();
+        // return $rol;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_rol)
+    public function destroy(Rol $rol)
     {
-        $rol = Rol::where('id_rol',$id_rol);
-        if (!$rol) {
-            return response()->json(['error' => 'Rol no encontrado.'], 404);
-        }
-
-        return $rol->delete();
+        // return $rol->delete();
     }
 }

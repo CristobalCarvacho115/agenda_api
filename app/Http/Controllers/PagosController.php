@@ -13,7 +13,7 @@ class PagosController extends Controller
      */
     public function index()
     {
-        return Pago::orderBy('id_pago')->get();
+        return Pago::orderBy('fecha_compra','desc')->get();
     }
 
     /**
@@ -36,24 +36,19 @@ class PagosController extends Controller
         return $pago;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, Pago $pago)
-    // {
-    //     //
-    // }
+    public function update(Request $request, Pago $pago)
+    {
+        // $pago->id_usuario = $request->id_usuario;
+        // $pago->fecha_compra = $Carbon::now()->format('Y-m-d H:i:s');
+        // $pago->save();
+        // return $pago;
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-//     public function destroy($id_pago)
-//     {
-//         $pago = Pago::where('id_pago',$id_pago);
-//         if (!$pago) {
-//             return response()->json(['error' => 'Pago no encontrada.'], 404);
-//         }
-
-//         return $pago->delete();
-//     }
+    public function destroy(Pago $pago)
+    {
+        // return $pago->delete();
+    }
 }

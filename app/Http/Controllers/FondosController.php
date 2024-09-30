@@ -12,7 +12,7 @@ class FondosController extends Controller
      */
     public function index()
     {
-        return Fondo::orderBy('id_fondo')->get();
+        return Fondo::orderBy('id')->get();
     }
 
     /**
@@ -49,13 +49,8 @@ class FondosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_fondo)
+    public function destroy(Fondo $fondo)
     {
-        $fondo = Fondo::where('id_fondo',$id_fondo);
-        if (!$fondo) {
-            return response()->json(['error' => 'Fondo no encontrada.'], 404);
-        }
-
         return $fondo->delete();
     }
 }
