@@ -45,15 +45,18 @@ class UsuariosController extends Controller
     public function update(Request $request, Usuario $usuario)
     {
         $usuario->nombre_usuario = $request->nombre_usuario;
-        $usuario->id_fondo = 1;
+        $usuario->id_fondo = $request->id_fondo;
         $usuario->save();
         return $usuario;
     }
     //Cambiar contrasena
     public function password(Request $request, Usuario $usuario)
     {
-        $usuario->password = Hash::make($request->password);
-        return $usuario;
+        $comprobar = ['password'=>$request->password];
+        if (Auth::attempt($comprobar)){
+            $usuario->password = Hash::make($request->password);
+            return $usuario;    
+        }
     }
     //Actualizar a version plus - Compra de plus
     public function plus(Request $request, Usuario $usuario)
@@ -69,4 +72,26 @@ class UsuariosController extends Controller
     {
         return $usuario->delete();
     }
+
+    // public function login(Request $request){
+
+    //     Auth::logout();
+
+    //     $credenciales = [
+    //         'correo'=>$request->email,
+    //         'password' =>$request->password,
+    //     ];
+
+    //     if (Auth::attempt($credenciales)){
+    //         $request->session()->regenerate();
+    //         return redirect()->route('actividades.index');
+    //     }else{
+    //         return back()->withErrors('Email o contraseña incorrecta');
+    //     }
+    // }
+
+    // public function logout(){
+    //     Auth::logout();
+    //     return redirect()->route('home.login');
+    // }
 }
